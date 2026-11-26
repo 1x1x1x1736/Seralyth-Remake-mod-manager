@@ -13,7 +13,7 @@ const BUYER_ROLE_ID = '1548833356504899595';
 // rank is shared by the mod cards and the 1st/2nd/3rd podium. Keep it in sync
 // with the catalog order in the manager (Skidalyth is 2nd place).
 const MODS = [
-  { id: 'seralyth-remake', name: 'Seralyth Remake', author: 'Seralyth', version: '14 builds', tag: 'mixed', paid: true, rank: 1,
+  { id: 'seralyth-remake', name: 'Seralyth Remake', author: '1x1x1x1_VR12', version: '14 builds', tag: 'mixed', paid: true, rank: 1,
     desc: 'Pick one of 13 builds, or the key-gated Paid build that injects without installing.', image: 'seralyth-remake.png' },
   { id: 'skidalyth', name: 'Skidalyth', author: 'Chillzmodz', version: 'Latest', tag: 'illegal', rank: 2,
     desc: 'GitHub Mod release download. No source-code button.', image: 'skidalyth.png' },

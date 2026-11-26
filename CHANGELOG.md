@@ -19,6 +19,38 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Seralyth Remake author
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Seralyth Remake's author is now shown as **1x1x1x1_VR12** in the loader, Avalonia catalog and static website instead of `Seralyth`.
+- **Download:** N/A (metadata change; not republished yet)
+- **Notes:** Display-only. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
+### 2026-11-26 — Loader (official / unofficial badges)
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Seralyth Remake now shows an **OFFICIAL** badge on its card and in the detail panel. Every other menu shows **UNOFFICIAL**. The existing LEGAL / ILLEGAL / PAID badges are unchanged, and search now matches the new label too.
+- **Download:** N/A (loader UI change; not republished yet)
+- **Notes:** This is display-only. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched, and Paid remains inject-only and key-gated.
+
+### 2026-11-26 — Loader (Paid injection fix)
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Paid injection no longer requires `SeralythMenu\Plugins\SeralythPlugin.dll`. The companion plugin is now optional: if it exists it is still redirected to the selected build, but if it is missing or cannot be patched the loader continues with only the tiny private bridge. This fixes the Paid key box accepting the key but injection failing in a game folder without that DLL.
+- **Download:** N/A (loader source change; not republished yet)
+- **Notes:** The Paid DLL is still injected for one session only, never downloaded or installed into `BepInEx\plugins`. No DLL preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
+### 2026-11-26 — Loader (welcome role code)
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** The Windows loader now shows a welcome card until the Loader User role is granted. Clicking **Yes, get a code** creates a random 4-digit code with a **Copy code** button; paste it into the Discord bot's **I have a code** box (or `/redeem`) and the bot grants only the Loader User role. The loader checks the private `DiscordBot\role-codes.json` ledger every few seconds and automatically clears the welcome card once the role is granted. Choosing **Paid** now always opens the key-entry box (prefilled with any saved key) above the welcome card and focuses it before the one-session injection.
+- **Download:** N/A (loader/bot source change; not republished yet)
+- **Notes:** Codes expire after 10 minutes, are single-use, and are limited to five wrong attempts per Discord user. A 4-digit code never grants Buyer or a paid key — longer keys still follow the existing redeem flow. Paid stays inject-only and is still validated every time; no DLL, preference, keybind or per-version config folder is touched.
+
 ### 2026-11-26 — Stable public website (GitHub Pages + Releases)
 
 - **Tag:** N/A

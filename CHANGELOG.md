@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Loader theme crash fix
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Fixed a startup crash when the saved theme was applied. The accent resources used by gradients and glows are now stored as colours, with separate brushes for foregrounds and borders, so switching themes updates everything safely.
+- **Download:** Local build fixed; public EXE not republished yet
+- **Notes:** Display-only fix. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Website design picker cache fix
 
 - **Tag:** N/A

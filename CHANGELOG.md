@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Website layout designs
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Added a **Layout** section to the website design picker with **Default**, **Compact**, **Glassy** and **Bold**. Layout is saved separately from the colour palette, and the picker label now shows both, e.g. `Midnight · Compact`. Compact tightens spacing, Glassy adds translucent panels and stronger blur, Bold uses thicker borders and stronger type.
+- **Download:** Website published
+- **Notes:** Static CSS/JS only. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched, and no external dependency or payment is required.
+
 ### 2026-11-26 — Website-style themes
 
 - **Tag:** N/A

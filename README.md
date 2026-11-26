@@ -29,6 +29,7 @@ macOS and other Linux architectures: build the Avalonia app with `Publish-CrossP
 - Ranks category with a 1st / 2nd / 3rd podium.
 - Local install counts, saved beside the EXE with a per-user fallback.
 - Settings page for the plugins folder, app name, theme colour, five website-style palettes (Midnight, Ember, Matrix, Rose, Arctic), button sounds and a volume slider that goes up to 300%.
+- Static website design picker: five colour palettes plus four layouts (Default, Compact, Glassy, Bold), saved per browser.
 - Optional private GitHub auto-updates: point the manager at a private repo with `versions.json`, sign in with a GitHub device code, and changed DLLs are hash-verified before replacing existing installs. See [PRIVATE_GITHUB_UPDATES.md](PRIVATE_GITHUB_UPDATES.md).
 - Bundled Discord bot: the manager starts it on launch and stops it on exit. It creates an access panel with the loader-user role, code entry, code delivery in the channel or DMs, and **Redeem key** for paid access. The loader can also show a welcome card that issues a 4-digit role code; pasting it into **I have a code** grants Loader User only. Redeeming a purchased key grants the Buyer role and reuses your `LOADER-...` key. The bot config is kept private and is not included in the public download.
 - Seralyth Remake now has 14 builds, including a key-gated **Paid** build that injects only. PAID badges appear on the card and details panel.

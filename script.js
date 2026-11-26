@@ -11,12 +11,19 @@ const ROLE_ID = '1575298213135786147';
 const BUYER_ROLE_ID = '1548833356504899595';
 
 const THEME_KEY = 'seralyth-website-theme';
+const LAYOUT_KEY = 'seralyth-website-layout';
 const THEMES = {
   midnight: { label: 'Midnight', color: '#070b13' },
   ember: { label: 'Ember', color: '#120a08' },
   matrix: { label: 'Matrix', color: '#04100a' },
   rose: { label: 'Rose', color: '#120711' },
   arctic: { label: 'Arctic', color: '#06111d' }
+};
+const LAYOUTS = {
+  default: { label: 'Default' },
+  compact: { label: 'Compact' },
+  glassy: { label: 'Glassy' },
+  bold: { label: 'Bold' }
 };
 
 // rank is shared by the mod cards and the 1st/2nd/3rd podium. Keep it in sync
@@ -235,31 +242,57 @@ function setupThemes() {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (!picker || !toggle || !menu) return;
 
+  let currentTheme = 'midnight';
+  let currentLayout = 'default';
+
+  const refreshLabel = () => {
+    if (label) label.textContent = `${THEMES[currentTheme].label} · ${LAYOUTS[currentLayout].label}`;
+  };
+
   const close = () => {
     picker.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
   };
 
-  const apply = (name) => {
-    const theme = THEMES[name] || THEMES.midnight;
-    document.documentElement.dataset.theme = theme.id || name;
+  const applyTheme = (name) => {
+    const theme = THEMES[name] ? name : 'midnight';
+    currentTheme = theme;
+    document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = 'dark';
-    if (label) label.textContent = theme.label;
-    if (meta) meta.setAttribute('content', theme.color);
+    if (meta) meta.setAttribute('content', THEMES[theme].color);
 
     menu.querySelectorAll('[data-theme]').forEach((button) => {
-      button.setAttribute('aria-checked', String(button.dataset.theme === name));
+      button.setAttribute('aria-checked', String(button.dataset.theme === theme));
     });
 
-    try { localStorage.setItem(THEME_KEY, name); } catch { /* storage can be blocked */ }
+    refreshLabel();
+    try { localStorage.setItem(THEME_KEY, theme); } catch { /* storage can be blocked */ }
   };
 
-  let saved = 'midnight';
+  const applyLayout = (name) => {
+    const layout = LAYOUTS[name] ? name : 'default';
+    currentLayout = layout;
+    document.documentElement.dataset.layout = layout;
+
+    menu.querySelectorAll('[data-layout]').forEach((button) => {
+      button.setAttribute('aria-checked', String(button.dataset.layout === layout));
+    });
+
+    refreshLabel();
+    try { localStorage.setItem(LAYOUT_KEY, layout); } catch { /* storage can be blocked */ }
+  };
+
+  let savedTheme = 'midnight';
+  let savedLayout = 'default';
   try {
-    const stored = localStorage.getItem(THEME_KEY);
-    if (stored && THEMES[stored]) saved = stored;
+    const storedTheme = localStorage.getItem(THEME_KEY);
+    const storedLayout = localStorage.getItem(LAYOUT_KEY);
+    if (storedTheme && THEMES[storedTheme]) savedTheme = storedTheme;
+    if (storedLayout && LAYOUTS[storedLayout]) savedLayout = storedLayout;
   } catch { /* storage can be blocked */ }
-  apply(saved);
+
+  applyTheme(savedTheme);
+  applyLayout(savedLayout);
 
   toggle.addEventListener('click', (event) => {
     event.stopPropagation();
@@ -268,10 +301,18 @@ function setupThemes() {
   });
 
   menu.addEventListener('click', (event) => {
-    const option = event.target.closest('[data-theme]');
-    if (!option || !THEMES[option.dataset.theme]) return;
-    apply(option.dataset.theme);
-    close();
+    const themeOption = event.target.closest('[data-theme]');
+    if (themeOption && THEMES[themeOption.dataset.theme]) {
+      applyTheme(themeOption.dataset.theme);
+      close();
+      return;
+    }
+
+    const layoutOption = event.target.closest('[data-layout]');
+    if (layoutOption && LAYOUTS[layoutOption.dataset.layout]) {
+      applyLayout(layoutOption.dataset.layout);
+      close();
+    }
   });
 
   document.addEventListener('click', (event) => {

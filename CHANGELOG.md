@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Website design picker cache fix
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Versioned the website's CSS and JS links so browsers load the new design picker code instead of an older cached copy. Without this, the new Layout buttons could appear but do nothing.
+- **Download:** Website published
+- **Notes:** Static HTML change only. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Website layout designs
 
 - **Tag:** N/A

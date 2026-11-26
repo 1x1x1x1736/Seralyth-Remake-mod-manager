@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Seralyth Remake Mod Manager — one loader for your menus, injected sessions, per-menu logs and a bundled Discord access bot." />
+  <meta name="theme-color" content="#080d16" />
+  <title>Seralyth Remake — Mod Manager &amp; Loader</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%237cf2ff'/%3E%3Cstop offset='1' stop-color='%23a57cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Segoe UI' font-size='38' font-weight='800' text-anchor='middle' fill='%2307111d'%3ES%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span>
+    <span class="grid-layer"></span><span class="noise-layer"></span>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Seralyth Remake home">
+        <span class="brand-mark">S</span>
+        <span>Seralyth <b>Remake</b></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+      <nav class="nav" id="nav">
+        <a href="#features">Features</a>
+        <a href="#mods">Mods</a>
+        <a href="#ranks">Ranks</a>
+        <a href="#discord">Discord</a>
+        <a href="#changelog">Changelog</a>
+        <a class="btn btn-sm" href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="pills">
+            <span class="pill"><span class="dot"></span> Windows + cross-platform</span>
+            <span class="pill pill-purple">✦ New: bot bundled</span>
+          </div>
+          <h1>One loader.<br /><span>Every menu.</span></h1>
+          <p class="lead">
+            Manage your mod library, inject a DLL for one game session, read each menu's own change log,
+            and hand out Discord roles — all from one clean manager with the access bot bundled in.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#download">Get the loader <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost" href="#discord">See Discord access</a>
+          </div>
+          <div class="hero-stats">
+            <div><strong>10</strong><span>mods in the library</span></div>
+            <div><strong>300%</strong><span>sound volume slider</span></div>
+            <div><strong>1 click</strong><span>session injection</span></div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-window">
+            <div class="art-titlebar"><i></i><i></i><i></i><span>Seralyth Remake</span></div>
+            <div class="art-body">
+              <aside>
+                <span class="active">Library</span><span>Ranks</span><span>Injecting</span><span>Change log</span><span>Settings</span>
+              </aside>
+              <div class="art-cards">
+                <div class="art-card featured"><span class="art-thumb"></span><b>Seralyth Remake</b><small>14 builds · LEGAL + ILLEGAL + PAID</small></div>
+                <div class="art-card"><span class="art-thumb"></span><b>Poison Menu</b><small>2 builds · LEGAL + ILLEGAL</small></div>
+                <div class="art-card"><span class="art-thumb"></span><b>Skidalyth</b><small>GitHub release · ILLEGAL</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="float-chip chip-one">🔊 Volume up to 300%</div>
+          <div class="float-chip chip-two">🤖 Bot built in</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Why use it</span>
+          <h2>Everything in one place</h2>
+          <p>No hunting through folders. The manager keeps the library, install state, logs and access panel together.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="icon">🧩</div>
+            <h3>One card per mod</h3>
+            <p>Seralyth and Poison bundle their builds behind a version picker, so each mod stays a single tidy card.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🏷️</div>
+            <h3>Honest badges</h3>
+            <p>LEGAL, ILLEGAL, or both where a menu ships mixed versions. Download buttons point to the current release files; there is no source-code button.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🏆</div>
+            <h3>Ranks podium</h3>
+            <p>1st, 2nd and 3rd places are called out on this page and in the loader — Seralyth Remake, Skidalyth, then Novalight.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">💾</div>
+            <h3>Local install counts</h3>
+            <p>Counts save beside the EXE with a per-user fallback, so they survive a move or a fresh Windows profile.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🎚️</div>
+            <h3>Sound you can hear</h3>
+            <p>Mute with the speaker button or push the volume slider all the way to 300%. The choice is remembered.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">💉</div>
+            <h3>Session injection</h3>
+            <p>Stage the DLL, restart the game through Steam so BepInEx loads it, then clean up when the game closes.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">📄</div>
+            <h3>Logs where you need them</h3>
+            <p>A manager-wide change log plus a **LOG** button on every card, backed by files shipped beside the EXE.</p>
+          </article>
+          <article class="feature">
+            <div class="icon">🤖</div>
+            <h3>Discord bot bundled</h3>
+            <p>The manager starts the access bot on launch and stops it on exit. No second app to remember.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ranks">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Ranks</span>
+          <h2>Top three</h2>
+          <p>The same 1st, 2nd and 3rd places shown in the loader's Ranks page.</p>
+        </div>
+        <div class="podium" id="podium"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="mods">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Library</span>
+          <h2>Mods it manages</h2>
+          <p>Images are the same ones shown on the cards inside the loader.</p>
+        </div>
+        <div class="mod-grid" id="modGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="discord">
+      <div class="wrap discord-grid">
+        <div>
+          <span class="eyebrow">Access panel</span>
+          <h2>Discord roles, without the mess</h2>
+          <p>
+            On startup the bot finds or creates <code>#mod-manager-access</code> and keeps one panel there.
+            If someone clicks <b>Get Loader Key</b> without the loader-user role, they get asked how they want their code.
+          </p>
+          <ol class="steps">
+            <li><span>1</span><div><b>Send code here</b> — the code is posted in the channel.</div></li>
+            <li><span>2</span><div><b>Send code in DMs</b> — the bot DMs it, with an ephemeral fallback.</div></li>
+            <li><span>3</span><div><b>I have a code</b> — a modal validates the key and grants the role.</div></li>
+            <li><span>4</span><div><b>Redeem key</b> — grants the Buyer role and gives/reuses your <code>LOADER-...</code> key for Seralyth Remake Paid.</div></li>
+          </ol>
+          <p class="muted">The bot never chats on its own — it only answers commands and buttons. The Paid build injects for one session and never installs or downloads a DLL.</p>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-head"><span class="bot-avatar">S</span><div><b>Seralyth Remake Access</b><small>BOT · ONLINE</small></div></div>
+          <div class="panel-body">
+            <p>Click <b>Get Loader Key</b> to get your loader code...</p>
+            <div class="panel-line">It looks like you don't have the <span class="mention">@Loader User</span> role here. Would you like the loader to send you a code in this channel, or the bot to send you a code in your DMs?</div>
+            <div class="panel-buttons">
+              <span>Send code here</span><span>Send code in DMs</span>
+              <span>I have a code</span><span>Redeem key</span><span class="link">Buy Now ↗</span>
+            </div>
+          </div>
+          <div class="role-row">
+            <span>Loader-user role ID</span>
+            <button class="copy" id="copyRole" type="button">1575298213135786147 <small>Copy</small></button>
+          </div>
+          <div class="role-row">
+            <span>Buyer role ID</span>
+            <button class="copy" id="copyBuyerRole" type="button">1548833356504899595 <small>Copy</small></button>
+          </div>
+          <p class="warning">⚠️ The bot's <code>config.json</code> contains a live token. It is deliberately not published here — add your own private copy beside the EXE if you use the access bot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="changelog">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">What's new</span>
+          <h2>Change log</h2>
+          <p>Newest entries first, straight from the project's <code>CHANGELOG.md</code>.</p>
+        </div>
+        <div class="changelog" id="changelogBody">Loading change log…</div>
+      </div>
+    </section>
+
+    <section class="section download" id="download">
+      <div class="wrap download-inner">
+        <div>
+          <span class="eyebrow">Ready when you are</span>
+          <h2>Grab the portable build</h2>
+          <p>
+            Windows comes as a portable EXE. Add your private <code>DiscordBot\</code> folder beside it
+            if you use the access bot. Linux x64 comes as a self-contained <code>.tar.gz</code> — extract it,
+            then run <code>Seralyth Remake</code> from the extracted folder.
+          </p>
+          <div class="download-actions">
+            <a class="btn" id="downloadBtn" href="https://github.com/1x1x1x1736/Seralyth-Remake-mod-manager/releases/latest/download/Seralyth.Remake.exe">Windows EXE <span aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost" id="downloadLinuxBtn" href="https://github.com/1x1x1x1736/Seralyth-Remake-mod-manager/releases/latest/download/Seralyth.Remake.Linux.x64.tar.gz">Linux x64 (.tar.gz) <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="muted">The access bot and its config are kept private; place your own <code>DiscordBot\</code> folder next to the EXE if you want it to auto-start.</p>
+          <p class="notice" id="downloadNotice" hidden></p>
+        </div>
+        <div class="download-card">
+          <div class="line"><span>Portable</span><b>No install needed</b></div>
+          <div class="line"><span>Manager</span><b>WPF + Avalonia</b></div>
+          <div class="line"><span>Linux</span><b>x64 self-contained</b></div>
+          <div class="line"><span>Discord bot</span><b>Optional / private</b></div>
+          <div class="line"><span>Change logs</span><b>Bundled</b></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>Seralyth Remake — manager, loader and access bot.</span>
+      <span>Built for the mod menu workflow.</span>
+    </div>
+  </footer>
+</body>
+</html>

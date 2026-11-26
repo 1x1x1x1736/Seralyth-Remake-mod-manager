@@ -10,6 +10,15 @@ const LINUX_URL = `${RELEASE_BASE}Seralyth.Remake.Linux.x64.tar.gz`;
 const ROLE_ID = '1575298213135786147';
 const BUYER_ROLE_ID = '1548833356504899595';
 
+const THEME_KEY = 'seralyth-website-theme';
+const THEMES = {
+  midnight: { label: 'Midnight', color: '#070b13' },
+  ember: { label: 'Ember', color: '#120a08' },
+  matrix: { label: 'Matrix', color: '#04100a' },
+  rose: { label: 'Rose', color: '#120711' },
+  arctic: { label: 'Arctic', color: '#06111d' }
+};
+
 // rank is shared by the mod cards and the 1st/2nd/3rd podium. Keep it in sync
 // with the catalog order in the manager (Skidalyth is 2nd place).
 const MODS = [
@@ -218,6 +227,61 @@ function setupCopyRole() {
   }
 }
 
+function setupThemes() {
+  const picker = document.getElementById('themePicker');
+  const toggle = document.getElementById('themeToggle');
+  const menu = document.getElementById('themeMenu');
+  const label = document.getElementById('themeLabel');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (!picker || !toggle || !menu) return;
+
+  const close = () => {
+    picker.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  const apply = (name) => {
+    const theme = THEMES[name] || THEMES.midnight;
+    document.documentElement.dataset.theme = theme.id || name;
+    document.documentElement.style.colorScheme = 'dark';
+    if (label) label.textContent = theme.label;
+    if (meta) meta.setAttribute('content', theme.color);
+
+    menu.querySelectorAll('[data-theme]').forEach((button) => {
+      button.setAttribute('aria-checked', String(button.dataset.theme === name));
+    });
+
+    try { localStorage.setItem(THEME_KEY, name); } catch { /* storage can be blocked */ }
+  };
+
+  let saved = 'midnight';
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    if (stored && THEMES[stored]) saved = stored;
+  } catch { /* storage can be blocked */ }
+  apply(saved);
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const open = picker.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  menu.addEventListener('click', (event) => {
+    const option = event.target.closest('[data-theme]');
+    if (!option || !THEMES[option.dataset.theme]) return;
+    apply(option.dataset.theme);
+    close();
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!picker.contains(event.target)) close();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') close();
+  });
+}
+
 function setupNav() {
   const toggle = document.getElementById('navToggle');
   const nav = document.getElementById('nav');
@@ -340,6 +404,7 @@ renderMods();
 loadChangelog();
 setupDownload();
 setupCopyRole();
+setupThemes();
 setupNav();
 setupReveal();
 setupScrollEffects();

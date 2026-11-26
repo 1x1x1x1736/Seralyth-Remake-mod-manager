@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Website-style themes
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Added five colour themes — **Midnight**, **Ember**, **Matrix**, **Rose** and **Arctic** — to the static website, the Windows loader and the Avalonia app. The website has a theme picker in the nav that saves to browser storage; the loaders have matching named presets in Settings that save with the other theme settings. Existing custom background colours still work and are marked **custom**.
+- **Download:** N/A (website + loader UI change; not republished yet)
+- **Notes:** Display-only. No DLL, menu preference, keybind, theme file, achievement, room/vote state or per-version config folder is deleted or rewritten. Paid stays inject-only and key-gated.
+
 ### 2026-11-26 — Seralyth Remake author
 
 - **Tag:** N/A

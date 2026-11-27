@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Category navigation sound
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Switching loader categories — All mods, Legal, Illegal, Installed, Ranks, Injecting and the filter pills — now plays a short navigation tone. The ordinary button click is suppressed for those controls so the sounds do not overlap.
+- **Download:** Local build updated; public EXE not republished yet
+- **Notes:** Uses the existing sound toggle and volume setting. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Full-screen mod details
 
 - **Tag:** N/A

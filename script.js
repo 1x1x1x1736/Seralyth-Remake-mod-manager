@@ -253,7 +253,36 @@ function setupThemes() {
     tip.setAttribute('aria-hidden', 'true');
   };
 
-  const showTip = (button) => {
+  const positionTip = (event, button) => {
+    if (!tip) return;
+    const width = tip.offsetWidth || 218;
+    const height = tip.offsetHeight || 96;
+    const pad = 12;
+    const gap = 18;
+    let left;
+    let top;
+
+    if (event && typeof event.clientX === 'number') {
+      // Follow the pointer while it moves inside the option.
+      left = event.clientX + gap;
+      top = event.clientY + gap;
+      if (left + width > window.innerWidth - pad) left = event.clientX - width - gap;
+      if (top + height > window.innerHeight - pad) top = event.clientY - height - gap;
+    } else {
+      // Keyboard focus has no pointer, so sit beside the button instead.
+      const rect = button.getBoundingClientRect();
+      left = rect.right + gap;
+      top = rect.top + rect.height / 2 - height / 2;
+      if (left + width > window.innerWidth - pad) left = rect.left - width - gap;
+    }
+
+    left = Math.max(pad, Math.min(left, window.innerWidth - width - pad));
+    top = Math.max(pad, Math.min(top, window.innerHeight - height - pad));
+    tip.style.left = `${Math.round(left)}px`;
+    tip.style.top = `${Math.round(top)}px`;
+  };
+
+  const showTip = (button, event) => {
     if (!tip || (window.matchMedia && window.matchMedia('(hover: none)').matches)) return;
     const isTheme = Boolean(button.dataset.theme);
     const key = isTheme ? button.dataset.theme : button.dataset.layout;
@@ -273,23 +302,15 @@ function setupThemes() {
     }
 
     tip.setAttribute('aria-hidden', 'false');
-    const rect = button.getBoundingClientRect();
-    const tipRect = tip.getBoundingClientRect();
-    const gap = 14;
-    let left = rect.left - tipRect.width - gap;
-    if (left < 12) left = rect.right + gap;
-    if (left + tipRect.width > window.innerWidth - 12) {
-      left = Math.max(12, window.innerWidth - tipRect.width - 12);
-    }
-    let top = rect.top + rect.height / 2 - tipRect.height / 2;
-    top = Math.max(12, Math.min(top, window.innerHeight - tipRect.height - 12));
-    tip.style.left = `${Math.round(left)}px`;
-    tip.style.top = `${Math.round(top)}px`;
     tip.classList.add('visible');
+    positionTip(event, button);
   };
 
   menu.querySelectorAll('[data-theme], [data-layout]').forEach((button) => {
-    button.addEventListener('mouseenter', () => showTip(button));
+    button.addEventListener('mouseenter', (event) => showTip(button, event));
+    button.addEventListener('mousemove', (event) => {
+      if (tip && tip.classList.contains('visible')) positionTip(event, null);
+    });
     button.addEventListener('mouseleave', hideTip);
     button.addEventListener('focus', () => showTip(button));
     button.addEventListener('blur', hideTip);

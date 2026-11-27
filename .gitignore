@@ -1,0 +1,23 @@
+# Public repository: website + release notes only.
+*.cs
+*.csproj
+*.sln
+*.xaml
+*.axaml
+*.dll
+*.exe
+*.pdb
+*.ps1
+*.json
+*.log
+bin/
+obj/
+publish/
+artifacts/
+Website/downloads/
+Website/.wrangler/
+Website/cloudflare/
+System.Collections.Hashtable.Out/
+AGENTS.md
+MOD_RULES.md
+PRIVATE_GITHUB_UPDATES.md

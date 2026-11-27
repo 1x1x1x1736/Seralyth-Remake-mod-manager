@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Loader v1.2.1 released
+
+- **Tag:** N/A
+- **Version:** Manager 1.2.1
+- **What changed:** Published the refreshed Windows loader with the Lag Menu startup auto updater and the public manager update notifier. The EXE now fetches `http://lagmenu.lol/Install/LagMenu.dll`, verifies it, and uses the cached copy for install/inject; the bundled DLL remains the offline fallback.
+- **Download:** https://github.com/1x1x1x1736/Seralyth-Remake-mod-manager/releases/latest/download/Seralyth.Remake.exe
+- **Notes:** Published assets contain no Discord token, `config.json`, `loaders.json`, `role-codes.json` or private bot package. No DLL, menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Lag Menu auto updater
 
 - **Tag:** ILLEGAL

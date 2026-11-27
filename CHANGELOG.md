@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Settings category sound
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** The Settings page now counts as a loader category, so opening or closing it from the sidebar plays the same navigation tone as All mods, Legal, Illegal, Installed, Ranks and Injecting. The ordinary button click is still suppressed for that navigation so the sounds do not overlap.
+- **Download:** Local build updated; public EXE not republished yet
+- **Notes:** The suppression now uses a short time window, so programmatic navigation cannot accidentally mute a later unrelated button. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Obfuscated release build
 
 - **Tag:** N/A

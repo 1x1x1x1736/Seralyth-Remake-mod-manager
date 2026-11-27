@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-27 — EXE icon
+
+- **Tag:** N/A
+- **Version:** Local Windows build
+- **What changed:** Added a custom Seralyth icon to `Seralyth Remake.exe` — a cyan-to-purple gradient tile with the dark `S` used on the website. The icon is embedded in the single-file EXE, so it shows in Explorer and the taskbar without extra files.
+- **Download:** Local build only; the website download currently points to v1.2.1.
+- **Notes:** Visual-only change. The icon source and full loader source are not published in this repository. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Loader v1.2.1 released
 
 - **Tag:** N/A

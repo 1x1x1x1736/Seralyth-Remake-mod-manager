@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Manager update notifier
+
+- **Tag:** N/A
+- **Version:** Manager 1.2.0
+- **What changed:** The Windows loader now checks public GitHub Releases on startup. When a newer version is published it says "You're in an outdated version. Would you like to update?" **Yes** downloads the new EXE from the same website release asset immediately; **No** waits 5 minutes and then downloads it automatically, even if the loader is closed and reopened during that window. The download uses a `.part` file, a versioned filename and GitHub's SHA-256 digest before it is offered in Downloads.
+- **Download:** Local Windows build updated; public EXE not republished yet
+- **Notes:** Bump `<Version>` in `WpfApp3/WpfApp3.csproj` when publishing each new tag (for example `v1.2.1`). The private DLL updater is unchanged, and no DLL, menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Private in-channel loader code
 
 - **Tag:** N/A

@@ -23,7 +23,7 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 - **Tag:** N/A
 - **Version:** Local Windows build + website
-- **What changed:** Theme presets and layout options now show polished hover tooltips. The loader shows the palette name, a short description and colour swatches at the mouse, and its circular **?** help buttons now use the same rich tooltip style. The Paid key prompt's key box and saved-key chip use it too. Right-clicking a **PAID** badge, the Paid version option, or the paid install/inject button now opens that key prompt directly. The website picker shows a compact glass chip inside the hovered option that follows the pointer and stays within that option (centred there on keyboard focus).
+- **What changed:** Theme presets and layout options now show polished hover tooltips. The loader shows the palette name, a short description and colour swatches at the mouse, and its circular **?** help buttons now use the same rich tooltip style. The Paid key prompt's saved-key chip uses it too. Right-clicking a **PAID** badge, the Paid version option, or the paid install/inject button now opens that key prompt directly. The website picker shows a compact glass chip inside the hovered option that follows the pointer and stays within that option (centred there on keyboard focus).
 - **Download:** Local build only; the website download currently points to v1.2.1.
 - **Notes:** Visual-only change. Saved themes and layouts still apply exactly as before. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
 

@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Full-screen mod details
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Clicking a mod card now opens that mod's details as a full-page view, like Settings. Added a **← Back to mods** button; **Esc**, search, filter changes, Settings and Change log also return to the library. The card **LOG** button opens the same full-page view with the change log expanded.
+- **Download:** Local build updated; public EXE not republished yet
+- **Notes:** UI-only change. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched. Paid remains inject-only and key-gated.
+
 ### 2026-11-26 — Loader theme crash fix
 
 - **Tag:** N/A

@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Full-screen photo fit
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** In the full-page mod view, the picture area is taller and uses fit mode, so the whole image is visible instead of only the top strip. Returning to the normal side panel restores the original cropped thumbnail style.
+- **Download:** Local build updated; public EXE not republished yet
+- **Notes:** Display-only fix. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Category navigation sound
 
 - **Tag:** N/A

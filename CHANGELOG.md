@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-27 — Fancy theme tooltips
+
+- **Tag:** N/A
+- **Version:** Local Windows build + website
+- **What changed:** Theme presets and layout options now show polished hover/focus tooltips. The loader shows the palette name, a short description and colour swatches; the website picker shows a matching glass tooltip beside the hovered option.
+- **Download:** Local build only; the website download currently points to v1.2.1.
+- **Notes:** Visual-only change. Saved themes and layouts still apply exactly as before. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-27 — EXE icon
 
 - **Tag:** N/A

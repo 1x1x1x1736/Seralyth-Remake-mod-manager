@@ -13,17 +13,17 @@ const BUYER_ROLE_ID = '1548833356504899595';
 const THEME_KEY = 'seralyth-website-theme';
 const LAYOUT_KEY = 'seralyth-website-layout';
 const THEMES = {
-  midnight: { label: 'Midnight', color: '#070b13' },
-  ember: { label: 'Ember', color: '#120a08' },
-  matrix: { label: 'Matrix', color: '#04100a' },
-  rose: { label: 'Rose', color: '#120711' },
-  arctic: { label: 'Arctic', color: '#06111d' }
+  midnight: { label: 'Midnight', color: '#070b13', tip: 'Cyan + violet — the default glow.', colors: ['#070B13', '#00E5FF', '#A56BFF'] },
+  ember: { label: 'Ember', color: '#120a08', tip: 'Warm orange + hot pink ember light.', colors: ['#120A08', '#FF9D6B', '#FF5F8D'] },
+  matrix: { label: 'Matrix', color: '#04100a', tip: 'Terminal green + cyan code glow.', colors: ['#04100A', '#59E0A0', '#7CF2FF'] },
+  rose: { label: 'Rose', color: '#120711', tip: 'Soft pink + violet neon.', colors: ['#120711', '#FF7AC6', '#A56BFF'] },
+  arctic: { label: 'Arctic', color: '#06111d', tip: 'Ice blue + cyan frost.', colors: ['#06111D', '#68B8FF', '#7CF2FF'] }
 };
 const LAYOUTS = {
-  default: { label: 'Default' },
-  compact: { label: 'Compact' },
-  glassy: { label: 'Glassy' },
-  bold: { label: 'Bold' }
+  default: { label: 'Default', tip: 'Balanced spacing and full panels.' },
+  compact: { label: 'Compact', tip: 'Tighter rows — fits more on screen.' },
+  glassy: { label: 'Glassy', tip: 'Frosted translucent surfaces.' },
+  bold: { label: 'Bold', tip: 'High-contrast blocks and borders.' }
 };
 
 // rank is shared by the mod cards and the 1st/2nd/3rd podium. Keep it in sync
@@ -242,6 +242,61 @@ function setupThemes() {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (!picker || !toggle || !menu) return;
 
+  const tip = document.getElementById('themeTip');
+  const tipTitle = document.getElementById('themeTipTitle');
+  const tipBody = document.getElementById('themeTipBody');
+  const tipSwatches = document.getElementById('themeTipSwatches');
+
+  const hideTip = () => {
+    if (!tip) return;
+    tip.classList.remove('visible');
+    tip.setAttribute('aria-hidden', 'true');
+  };
+
+  const showTip = (button) => {
+    if (!tip || (window.matchMedia && window.matchMedia('(hover: none)').matches)) return;
+    const isTheme = Boolean(button.dataset.theme);
+    const key = isTheme ? button.dataset.theme : button.dataset.layout;
+    const data = isTheme ? THEMES[key] : LAYOUTS[key];
+    if (!data) return;
+
+    if (tipTitle) tipTitle.textContent = data.label;
+    if (tipBody) tipBody.textContent = data.tip || '';
+    if (tipSwatches) {
+      tipSwatches.replaceChildren();
+      (data.colors || []).forEach((color) => {
+        const swatch = document.createElement('span');
+        swatch.className = 'theme-tooltip-swatch';
+        swatch.style.background = color;
+        tipSwatches.appendChild(swatch);
+      });
+    }
+
+    tip.setAttribute('aria-hidden', 'false');
+    const rect = button.getBoundingClientRect();
+    const tipRect = tip.getBoundingClientRect();
+    const gap = 14;
+    let left = rect.left - tipRect.width - gap;
+    if (left < 12) left = rect.right + gap;
+    if (left + tipRect.width > window.innerWidth - 12) {
+      left = Math.max(12, window.innerWidth - tipRect.width - 12);
+    }
+    let top = rect.top + rect.height / 2 - tipRect.height / 2;
+    top = Math.max(12, Math.min(top, window.innerHeight - tipRect.height - 12));
+    tip.style.left = `${Math.round(left)}px`;
+    tip.style.top = `${Math.round(top)}px`;
+    tip.classList.add('visible');
+  };
+
+  menu.querySelectorAll('[data-theme], [data-layout]').forEach((button) => {
+    button.addEventListener('mouseenter', () => showTip(button));
+    button.addEventListener('mouseleave', hideTip);
+    button.addEventListener('focus', () => showTip(button));
+    button.addEventListener('blur', hideTip);
+  });
+  window.addEventListener('scroll', hideTip, { passive: true });
+  window.addEventListener('resize', hideTip);
+
   let currentTheme = 'midnight';
   let currentLayout = 'default';
 
@@ -250,6 +305,7 @@ function setupThemes() {
   };
 
   const close = () => {
+    hideTip();
     picker.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
   };

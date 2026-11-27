@@ -412,6 +412,35 @@ header, main, footer { position: relative; z-index: 1; }
 .layout-glassy { background: linear-gradient(135deg, rgba(255,255,255,.35), rgba(var(--cyan-rgb), .25)); }
 .layout-bold { background: linear-gradient(135deg, var(--cyan) 0 58%, transparent 58%); border-width: 2px; border-color: var(--cyan); }
 
+/* Fancy hover preview for the theme/layout picker. */
+.theme-tooltip {
+  position: fixed; z-index: 120; width: 218px; padding: 12px 13px;
+  border-radius: 14px; border: 1px solid rgba(var(--cyan-rgb), .42);
+  background: linear-gradient(145deg, rgba(11,18,32,.98), rgba(8,13,24,.98));
+  box-shadow: 0 18px 48px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
+  backdrop-filter: blur(14px); opacity: 0; visibility: hidden;
+  transform: translateY(4px) scale(.98); transform-origin: right center;
+  transition: opacity .16s ease, transform .18s var(--ease), visibility .16s ease;
+  pointer-events: none;
+}
+.theme-tooltip.visible { opacity: 1; visibility: visible; transform: none; }
+.theme-tooltip::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+  background: linear-gradient(135deg, rgba(var(--cyan-rgb), .8), rgba(var(--purple-rgb), .65), transparent 72%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+}
+.theme-tooltip-title {
+  font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--text);
+}
+.theme-tooltip-body { margin-top: 5px; font-size: 11px; line-height: 1.45; color: var(--muted); }
+.theme-tooltip-swatches { display: flex; gap: 6px; margin-top: 10px; }
+.theme-tooltip-swatches:empty { display: none; }
+.theme-tooltip-swatch {
+  width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(255,255,255,.24);
+  box-shadow: 0 3px 10px rgba(0,0,0,.35);
+}
+
 .btn {
   position: relative; overflow: hidden; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;

@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Automatic Linux release build
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Every Release build of the Windows manager now also publishes the self-contained Avalonia linux-x64 build and refreshes `Website/downloads/Seralyth.Remake.Linux.x64.tar.gz`. Debug builds stay fast; use `-p:SkipLinuxBuild=true` to skip the Linux step when needed.
+- **Download:** `Website/downloads/Seralyth.Remake.Linux.x64.tar.gz` refreshed locally; public release tarball not republished yet
+- **Notes:** Added `Build-Linux.ps1` and an MSBuild Release target. No files under the protected `Seralyth-Menu-4.8.5 (1)` folder are read for deletion or cleaned. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Settings category sound
 
 - **Tag:** N/A

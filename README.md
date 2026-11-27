@@ -100,6 +100,10 @@ artifacts/osx-x64
 
 Add `-FrameworkDependent` for smaller folders if the target already has .NET 9 installed. Add `-RuntimeIdentifiers linux-x64` to publish just one platform.
 
+Every **Release** build of the Windows manager also refreshes the self-contained Linux x64 package at
+`Website/downloads/Seralyth.Remake.Linux.x64.tar.gz` through `Build-Linux.ps1`. Debug builds stay fast. Pass
+`-p:SkipLinuxBuild=true` to `dotnet build` when you only want the Windows binary.
+
 ## Installers (Windows)
 
 ### Setup.exe

@@ -254,30 +254,25 @@ function setupThemes() {
   };
 
   const positionTip = (event, button) => {
-    if (!tip) return;
-    const width = tip.offsetWidth || 218;
-    const height = tip.offsetHeight || 96;
-    const pad = 12;
-    const gap = 18;
+    if (!tip || !button) return;
+    const rect = button.getBoundingClientRect();
+    const width = tip.offsetWidth || 120;
+    const height = tip.offsetHeight || 24;
     let left;
     let top;
 
     if (event && typeof event.clientX === 'number') {
-      // Follow the pointer while it moves inside the option.
-      left = event.clientX + gap;
-      top = event.clientY + gap;
-      if (left + width > window.innerWidth - pad) left = event.clientX - width - gap;
-      if (top + height > window.innerHeight - pad) top = event.clientY - height - gap;
+      // Keep the compact chip centred on the pointer, clamped to this button.
+      left = event.clientX - rect.left - width / 2;
+      top = event.clientY - rect.top - height / 2;
     } else {
-      // Keyboard focus has no pointer, so sit beside the button instead.
-      const rect = button.getBoundingClientRect();
-      left = rect.right + gap;
-      top = rect.top + rect.height / 2 - height / 2;
-      if (left + width > window.innerWidth - pad) left = rect.left - width - gap;
+      // Keyboard focus has no pointer, so centre it in the button.
+      left = (rect.width - width) / 2;
+      top = (rect.height - height) / 2;
     }
 
-    left = Math.max(pad, Math.min(left, window.innerWidth - width - pad));
-    top = Math.max(pad, Math.min(top, window.innerHeight - height - pad));
+    left = Math.max(2, Math.min(left, rect.width - width - 2));
+    top = Math.max(2, Math.min(top, rect.height - height - 2));
     tip.style.left = `${Math.round(left)}px`;
     tip.style.top = `${Math.round(top)}px`;
   };
@@ -301,6 +296,8 @@ function setupThemes() {
       });
     }
 
+    tip.classList.add('inside-button');
+    if (tip.parentElement !== button) button.appendChild(tip);
     tip.setAttribute('aria-hidden', 'false');
     tip.classList.add('visible');
     positionTip(event, button);
@@ -309,7 +306,7 @@ function setupThemes() {
   menu.querySelectorAll('[data-theme], [data-layout]').forEach((button) => {
     button.addEventListener('mouseenter', (event) => showTip(button, event));
     button.addEventListener('mousemove', (event) => {
-      if (tip && tip.classList.contains('visible')) positionTip(event, null);
+      if (tip && tip.classList.contains('visible')) positionTip(event, button);
     });
     button.addEventListener('mouseleave', hideTip);
     button.addEventListener('focus', () => showTip(button));

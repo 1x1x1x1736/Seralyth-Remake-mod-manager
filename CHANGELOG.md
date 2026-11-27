@@ -23,7 +23,7 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 - **Tag:** N/A
 - **Version:** Local Windows build + website
-- **What changed:** Theme presets and layout options now show polished hover tooltips. The loader shows the palette name, a short description and colour swatches at the mouse. The website picker shows a matching glass tooltip that follows the pointer as you move inside an option (and sits beside the option on keyboard focus).
+- **What changed:** Theme presets and layout options now show polished hover tooltips. The loader shows the palette name, a short description and colour swatches at the mouse. The website picker shows a compact glass chip inside the hovered option that follows the pointer and stays within that option (centred there on keyboard focus).
 - **Download:** Local build only; the website download currently points to v1.2.1.
 - **Notes:** Visual-only change. Saved themes and layouts still apply exactly as before. No DLL, preference, keybind, theme, achievement, room/vote state or per-version config folder is touched.
 

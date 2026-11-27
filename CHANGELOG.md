@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Lag Menu auto updater
+
+- **Tag:** ILLEGAL
+- **Version:** Latest — lagmenu.lol
+- **What changed:** Lag Menu now auto-updates from `http://lagmenu.lol/Install/LagMenu.dll` on manager startup. The DLL is downloaded to a private AppData cache, checked for a valid PE header and SHA-256, and then preferred for both download/install and injection. The bundled copy remains a fallback if the update site is unavailable.
+- **Download:** http://lagmenu.lol/Install/LagMenu.dll
+- **Notes:** Tag stays ILLEGAL. Protected menu folders, preferences, keybinds, themes, achievements and room/vote state are never touched. No other menu's update source changed.
+
 ### 2026-11-26 — Manager update notifier
 
 - **Tag:** N/A

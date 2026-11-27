@@ -44,7 +44,7 @@ const MODS = [
   { id: 'poison-menu', name: 'Poison Menu', author: 'heycanihavethis', version: '2 builds', tag: 'mixed', rank: 7,
     desc: 'Choose Legal or Illegal; the matching DLL is installed for you.', image: 'poison-menu.png' },
   { id: 'lag-menu', name: 'Lag Menu', author: 'MrLag', version: 'Latest', tag: 'illegal', rank: 8,
-    desc: 'Updated LagMenu.dll ships with the manager and installs directly.', image: 'lag-menu.png' },
+    desc: 'Auto-updates from lagmenu.lol on startup and installs the latest LagMenu.dll directly.', image: 'lag-menu.png' },
   { id: 'stupid-template', name: 'StupidTemplate', author: 'Unknown', version: 'Latest', tag: 'illegal', rank: 9,
     desc: 'Updated StupidTemplate.dll ships with the manager and installs directly.', image: null },
   { id: 'zynxgtgold', name: 'ZynxGTGold', author: 'Unknown', version: 'Latest', tag: 'illegal', rank: 10,

@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Obfuscated release build
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** Release packaging now runs a safe, rename-only Obfuscar pass over the manager before building the single-file EXE. Private symbols are renamed while public API, XAML bindings, JSON property names, event handlers and string literals stay intact. `Release.ps1` also gained `-SkipObfuscation` and `-NoZip` switches for troubleshooting and low-disk builds.
+- **Download:** Local obfuscated build verified; public EXE not republished yet
+- **Notes:** The obfuscated EXE was smoke-tested and starts cleanly. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Full-screen photo fit
 
 - **Tag:** N/A

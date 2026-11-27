@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-26 — Private in-channel loader code
+
+- **Tag:** N/A
+- **Version:** N/A
+- **What changed:** The **Show code here (private)** button now replies with an ephemeral Discord message, so only the person who clicked can see the loader key. DM delivery is unchanged. The panel text was updated to say the code is shown privately here or sent in DMs.
+- **Download:** Local bot rebuilt and restarted; public release not republished yet
+- **Notes:** The old public channel reply that exposed the key to everyone is gone. No DLL, preference, keybind, theme file, achievement, room/vote state or per-version config folder is touched.
+
 ### 2026-11-26 — Automatic Linux release build
 
 - **Tag:** N/A

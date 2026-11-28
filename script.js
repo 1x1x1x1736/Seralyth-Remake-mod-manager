@@ -18,6 +18,8 @@ const NEW_BADGE_KEY = 'seralyth-website-new-badge';
 // clears from its current menu and moves to the next id in the order below.
 const NEW_BADGE_VERSION = 'new-badge-1';
 const NEW_BADGE_ORDER = [
+  'atlas-remade',
+  'rexon-menu-free',
   'zynxgtgold',
   'stupid-template',
   'lag-menu',
@@ -76,6 +78,12 @@ const MODS = [
   { id: 'zynxgtgold', name: 'ZynxGTGold', author: 'Unknown', version: 'Latest', tag: 'illegal', rank: 10,
     updated: '2026-11-25',
     desc: 'Downloads ZynxGTGold.dll from its fresh link and installs it.', image: 'zynxgtgold.png' },
+  { id: 'rexon-menu-free', name: 'Rexon Menu Free', author: 'Unknown', version: 'Free', tag: 'illegal', rank: 11,
+    updated: '2026-11-28',
+    desc: 'Local Rexon-Menu-Free.dll card; pick the DLL until it is bundled.', image: 'rexon-menu-free.png' },
+  { id: 'atlas-remade', name: 'Atlas Remade', author: 'Unknown', version: '1.0.0', tag: 'illegal', rank: 12,
+    updated: '2026-11-28',
+    desc: 'Local Atlas Remade.dll card; pick the DLL until it is bundled.', image: 'atlas-remade.png' },
 ];
 
 const TAG_LABEL = { legal: 'LEGAL', illegal: 'ILLEGAL', mixed: 'LEGAL + ILLEGAL' };

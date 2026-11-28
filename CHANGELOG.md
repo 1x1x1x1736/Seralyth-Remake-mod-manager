@@ -19,6 +19,14 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-28 — Rexon Menu Free + Atlas Remade
+
+- **Tag:** ILLEGAL
+- **Version:** Free / 1.0.0
+- **What changed:** Added two new ILLEGAL cards with the supplied screenshots: Rexon Menu Free (`Rexon-Menu-Free.dll`) and Atlas Remade (`Atlas Remade.dll`). They appear in the library and on the website, keep Seralyth Remake / Skidalyth / Novalight in the top three ranks, and use per-menu change logs for their live age labels. Atlas Remade automatically carries the single moving NEW badge until a newer manager version is published.
+- **Download:** Local Windows build + website; no DLL download is linked yet because the two DLL files were not attached.
+- **Notes:** Tag stays ILLEGAL for both menus. The screenshots are bundled into the manager and published on the website, but no DLL, source code, bot config or token is added to the public repository. Install buttons ask for the DLL until the files are supplied; no menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
+
 ### 2026-11-28 — Menu update ages
 
 - **Tag:** N/A

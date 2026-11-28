@@ -19,13 +19,21 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-28 — Loader v1.2.2 released
+
+- **Tag:** N/A
+- **Version:** Manager 1.2.2
+- **What changed:** Published the Windows loader and Linux x64 build with the Rexon Menu Free and Atlas Remade ILLEGAL cards, their bundled DLLs, live per-menu update ages and the moving NEW badge. Both DLLs are mirrored as Release assets for fallback downloads.
+- **Download:** https://github.com/1x1x1x1736/Seralyth-Remake-mod-manager/releases/latest/download/Seralyth.Remake.exe
+- **Notes:** Published assets contain no source code, Discord token, `config.json`, `loaders.json`, `role-codes.json`, paid DLL or private bot package. No menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
+
 ### 2026-11-28 — Rexon Menu Free + Atlas Remade
 
 - **Tag:** ILLEGAL
 - **Version:** Free / 1.0.0
 - **What changed:** Added two new ILLEGAL cards with the supplied screenshots: Rexon Menu Free (`Rexon-Menu-Free.dll`) and Atlas Remade (`Atlas Remade.dll`). They appear in the library and on the website, keep Seralyth Remake / Skidalyth / Novalight in the top three ranks, and use per-menu change logs for their live age labels. Atlas Remade automatically carries the single moving NEW badge until a newer manager version is published.
-- **Download:** Local Windows build + website; no DLL download is linked yet because the two DLL files were not attached.
-- **Notes:** Tag stays ILLEGAL for both menus. The screenshots are bundled into the manager and published on the website, but no DLL, source code, bot config or token is added to the public repository. Install buttons ask for the DLL until the files are supplied; no menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
+- **Download:** Manager v1.2.2: https://github.com/1x1x1x1736/Seralyth-Remake-mod-manager/releases/latest/download/Seralyth.Remake.exe (both DLLs bundled and mirrored as release assets).
+- **Notes:** Tag stays ILLEGAL for both menus. The screenshots and DLLs are bundled into the manager; the DLLs are also mirrored as Release assets. No source code, bot config or token is added to the public repository. Install and inject use the bundled DLLs with the mirrors as fallback; no menu preference, keybind, theme, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
 
 ### 2026-11-28 — Menu update ages
 

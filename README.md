@@ -25,6 +25,8 @@ macOS and other Linux architectures: build the Avalonia app with `Publish-CrossP
 
 - One card per mod, with a version picker for mods that have multiple builds.
 - LEGAL / ILLEGAL badges, including both badges where a mod has mixed versions.
+- One moving NEW badge: newly added menus get it first, then it advances to the next menu when a new manager version is published.
+- A live "Updated X ago" age on every menu card, read from that menu's own change log and coloured by staleness.
 - Download buttons point to the current release files; no source-code button is shown.
 - Ranks category with a 1st / 2nd / 3rd podium.
 - Local install counts, saved beside the EXE with a per-user fallback.

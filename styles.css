@@ -629,6 +629,7 @@ h1 span {
 .podium-info { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .podium-info h3 { margin: 0; font-size: 16px; flex: 1; }
 .podium-info p { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 11px; }
+.podium-info .menu-age { flex-basis: 100%; }
 
 /* ---------- mods ---------- */
 .mod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -661,8 +662,15 @@ h1 span {
 .tag-illegal { color: var(--red); background: rgba(255,122,144,.1); border: 1px solid rgba(255,122,144,.3); }
 .tag-mixed { color: var(--soft-purple); background: rgba(var(--purple-rgb),.14); border: 1px solid rgba(var(--purple-rgb),.4); box-shadow: 0 0 14px rgba(var(--purple-rgb),.16); }
 .tag-paid { color: var(--gold); background: rgba(255,196,107,.12); border: 1px solid rgba(255,196,107,.4); box-shadow: 0 0 14px rgba(255,196,107,.14); }
+.tag-new { color: #7CF2FF; background: rgba(0,229,255,.12); border: 1px solid rgba(0,229,255,.48); box-shadow: 0 0 16px rgba(0,229,255,.24); }
 .tag-group { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-.mod-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); padding-top: 11px; }
+.mod-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; justify-content: space-between; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); padding-top: 11px; }
+.menu-age { font-size: 10px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.mod-meta .menu-age { flex-basis: 100%; }
+.menu-age.age-fresh { color: #3BE08B; }
+.menu-age.age-recent { color: #7CF2FF; }
+.menu-age.age-aging { color: #FFC46B; }
+.menu-age.age-stale { color: #FF5C7A; }
 
 /* ---------- discord ---------- */
 .discord-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 58px; align-items: center; }

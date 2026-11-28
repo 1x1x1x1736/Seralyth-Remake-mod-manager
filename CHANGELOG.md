@@ -19,6 +19,22 @@ For menu-specific history, add a dated entry to `WpfApp3/MenuChangeLogs/<mod-id>
 
 ## Updates
 
+### 2026-11-28 — Menu update ages
+
+- **Tag:** N/A
+- **Version:** Local Windows build + website
+- **What changed:** Every menu card now shows how long it has been since that menu's own change log was updated, counting in seconds, minutes, hours, days, weeks, months and years. The label updates live and turns green, cyan, amber, then red as the menu gets older; red starts at 30 days without an update.
+- **Download:** Local build only; the website download currently points to v1.2.1.
+- **Notes:** Cosmetic state only. Each menu uses its own dated change-log entry; no DLL, saved theme, layout, keybind, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
+
+### 2026-11-28 — Moving NEW badge
+
+- **Tag:** N/A
+- **Version:** Local Windows build + website
+- **What changed:** Added one moving NEW badge. Adding a menu with a new stable Id makes the badge jump to that menu; after a successful manager update it clears and moves to the next menu. The badge is shown on loader cards, website cards and the website podium.
+- **Download:** Local build only; the website download currently points to v1.2.1.
+- **Notes:** Cosmetic state only. Adds a small `new-menu-badge.json` in AppData and a website localStorage key. No DLL, saved theme, keybind, achievement, room/vote state or per-version config folder is touched. Paid stays inject-only and key-gated.
+
 ### 2026-11-27 — Fancy theme tooltips
 
 - **Tag:** N/A

@@ -12,6 +12,23 @@ const BUYER_ROLE_ID = '1548833356504899595';
 
 const THEME_KEY = 'seralyth-website-theme';
 const LAYOUT_KEY = 'seralyth-website-layout';
+const NEW_BADGE_KEY = 'seralyth-website-new-badge';
+
+// Bump this whenever a new manager version is published. The NEW badge then
+// clears from its current menu and moves to the next id in the order below.
+const NEW_BADGE_VERSION = 'new-badge-1';
+const NEW_BADGE_ORDER = [
+  'zynxgtgold',
+  'stupid-template',
+  'lag-menu',
+  'poison-menu',
+  'bark',
+  'malachi-reborn',
+  'spectral',
+  'novalight',
+  'skidalyth',
+  'seralyth-remake'
+];
 const THEMES = {
   midnight: { label: 'Midnight', color: '#070b13', tip: 'Cyan + violet — the default glow.', colors: ['#070B13', '#00E5FF', '#A56BFF'] },
   ember: { label: 'Ember', color: '#120a08', tip: 'Warm orange + hot pink ember light.', colors: ['#120A08', '#FF9D6B', '#FF5F8D'] },
@@ -30,30 +47,138 @@ const LAYOUTS = {
 // with the catalog order in the manager (Skidalyth is 2nd place).
 const MODS = [
   { id: 'seralyth-remake', name: 'Seralyth Remake', author: '1x1x1x1_VR12', version: '14 builds', tag: 'mixed', paid: true, rank: 1,
+    updated: '2026-11-25',
     desc: 'Pick one of 13 builds, or the key-gated Paid build that injects without installing.', image: 'seralyth-remake.png' },
   { id: 'skidalyth', name: 'Skidalyth', author: 'Chillzmodz', version: 'Latest', tag: 'illegal', rank: 2,
+    updated: '2026-11-25',
     desc: 'GitHub Mod release download. No source-code button.', image: 'skidalyth.png' },
   { id: 'novalight', name: 'Novalight', author: 'Unknown', version: '1.0.0', tag: 'illegal', rank: 3,
+    updated: '2026-11-25',
     desc: 'Updated Novalight.dll ships with the manager and installs automatically.', image: 'novalight.png' },
   { id: 'spectral', name: 'Spectral', author: 'Unknown', version: '1.0.0', tag: 'illegal', rank: 4,
+    updated: '2026-11-25',
     desc: 'Copies your local Spectral Menu.dll into the plugins folder.', image: 'spectral.png' },
   { id: 'malachi-reborn', name: 'Malachi Reborn', author: 'Unknown', version: '1.0.0', tag: 'illegal', rank: 5,
+    updated: '2026-11-25',
     desc: 'Updated Malachis_Menu_Reborn.dll ships with the manager and installs in one click.', image: 'malachi-reborn.png' },
   { id: 'bark', name: 'Bark', author: 'NgbatzYT', version: '3.0.2', tag: 'legal', rank: 6,
+    updated: '2026-11-25',
     desc: 'GitHub 3.0.2 release download. No source-code button.', image: 'bark.png' },
   { id: 'poison-menu', name: 'Poison Menu', author: 'heycanihavethis', version: '2 builds', tag: 'mixed', rank: 7,
+    updated: '2026-11-25',
     desc: 'Choose Legal or Illegal; the matching DLL is installed for you.', image: 'poison-menu.png' },
   { id: 'lag-menu', name: 'Lag Menu', author: 'MrLag', version: 'Latest', tag: 'illegal', rank: 8,
+    updated: '2026-11-26',
     desc: 'Auto-updates from lagmenu.lol on startup and installs the latest LagMenu.dll directly.', image: 'lag-menu.png' },
   { id: 'stupid-template', name: 'StupidTemplate', author: 'Unknown', version: 'Latest', tag: 'illegal', rank: 9,
+    updated: '2026-11-25',
     desc: 'Updated StupidTemplate.dll ships with the manager and installs directly.', image: null },
   { id: 'zynxgtgold', name: 'ZynxGTGold', author: 'Unknown', version: 'Latest', tag: 'illegal', rank: 10,
+    updated: '2026-11-25',
     desc: 'Downloads ZynxGTGold.dll from its fresh link and installs it.', image: 'zynxgtgold.png' },
 ];
 
 const TAG_LABEL = { legal: 'LEGAL', illegal: 'ILLEGAL', mixed: 'LEGAL + ILLEGAL' };
 const PLACE_LABEL = ['1st place', '2nd place', '3rd place'];
 const PLACE_MEDAL = ['🥇', '🥈', '🥉'];
+
+function resolveNewBadgeId() {
+  let state = null;
+  try {
+    state = JSON.parse(localStorage.getItem(NEW_BADGE_KEY) || 'null');
+  } catch (_) {
+    state = null;
+  }
+
+  const ids = MODS.map(mod => mod.id);
+  const valid = new Set(ids);
+  const fresh = ids.filter(id => !(state?.knownIds || []).includes(id));
+  const firstRun = !state || !state.version;
+
+  if (firstRun) {
+    state = {
+      version: NEW_BADGE_VERSION,
+      id: NEW_BADGE_ORDER[0],
+      knownIds: ids,
+      queue: []
+    };
+  } else {
+    const previousId = state.id;
+    const versionChanged = state.version !== NEW_BADGE_VERSION;
+    state.knownIds = ids;
+    state.queue = (state.queue || []).filter(id => valid.has(id) && !fresh.includes(id));
+
+    if (versionChanged) {
+      // Update passed: clear the old badge and rotate to the next menu.
+      state.id = '';
+    } else if (fresh.length > 0) {
+      // A newly added menu gets the badge immediately.
+      if (previousId && !state.queue.includes(previousId)) state.queue.unshift(previousId);
+      state.id = fresh[fresh.length - 1];
+      state.queue = state.queue.filter(id => id !== state.id);
+    } else if (!valid.has(previousId)) {
+      state.id = '';
+    }
+
+    if (!state.id || !valid.has(state.id)) {
+      state.id = state.queue.shift() || (() => {
+        const index = NEW_BADGE_ORDER.indexOf(previousId);
+        return NEW_BADGE_ORDER[(index + 1) % NEW_BADGE_ORDER.length];
+      })();
+    }
+
+    state.version = NEW_BADGE_VERSION;
+  }
+
+  try {
+    localStorage.setItem(NEW_BADGE_KEY, JSON.stringify(state));
+  } catch (_) {
+    // localStorage can be disabled; the badge still renders this visit.
+  }
+
+  return state.id;
+}
+
+const NEW_BADGE_ID = resolveNewBadgeId();
+
+const AGE_UNITS = [
+  { limit: 60, seconds: 1, name: 'second' },
+  { limit: 3600, seconds: 60, name: 'minute' },
+  { limit: 86400, seconds: 3600, name: 'hour' },
+  { limit: 604800, seconds: 86400, name: 'day' },
+  { limit: 2592000, seconds: 604800, name: 'week' },
+  { limit: 31536000, seconds: 2592000, name: 'month' },
+  { limit: Infinity, seconds: 31536000, name: 'year' }
+];
+
+function updatedMs(updated) {
+  const time = Date.parse(`${updated}T00:00:00Z`);
+  return Number.isFinite(time) ? time : Date.now();
+}
+
+function ageInfo(updated) {
+  const seconds = Math.max(0, (Date.now() - updatedMs(updated)) / 1000);
+  const unit = AGE_UNITS.find(item => seconds < item.limit) || AGE_UNITS[AGE_UNITS.length - 1];
+  const count = Math.max(1, Math.floor(seconds / unit.seconds));
+  return {
+    text: `Updated ${count} ${unit.name}${count === 1 ? '' : 's'} ago`,
+    tone: seconds < 86400 ? 'fresh' : seconds < 604800 ? 'recent' : seconds < 2592000 ? 'aging' : 'stale'
+  };
+}
+
+function ageMarkup(updated) {
+  if (!updated) return '';
+  const info = ageInfo(updated);
+  return `<span class="menu-age age-${info.tone}" data-updated="${escapeHtml(updated)}" title="Based on this menu's own change log. Turns red after 30 days without an update.">${info.text}</span>`;
+}
+
+function refreshAges() {
+  document.querySelectorAll('[data-updated]').forEach(element => {
+    const info = ageInfo(element.dataset.updated);
+    element.textContent = info.text;
+    element.className = `menu-age age-${info.tone}`;
+  });
+}
 
 function rankedMods() {
   return [...MODS].sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
@@ -84,6 +209,7 @@ function renderPodium() {
       ? `<img src="assets/mods/${mod.image}" alt="${escapeHtml(mod.name)} preview" loading="lazy" />`
       : '';
     const shotClass = mod.image ? 'podium-shot' : 'podium-shot placeholder';
+    const newBadge = mod.id === NEW_BADGE_ID ? '<span class="tag tag-new">NEW</span>' : '';
     return `
       <article class="podium-card place-${index + 1}">
         <div class="podium-head">
@@ -94,8 +220,9 @@ function renderPodium() {
         <div class="${shotClass}">${shot}</div>
         <div class="podium-info">
           <h3>${escapeHtml(mod.name)}</h3>
-          <span class="tag tag-${mod.tag}">${TAG_LABEL[mod.tag]}</span>
+          <span class="tag-group"><span class="tag tag-${mod.tag}">${TAG_LABEL[mod.tag]}</span>${newBadge}</span>
           <p>by ${escapeHtml(mod.author)}</p>
+          ${ageMarkup(mod.updated)}
         </div>
       </article>`;
   }).join('');
@@ -112,16 +239,17 @@ function renderMods() {
     const shotClass = mod.image ? 'mod-shot' : 'mod-shot placeholder';
     const rank = rankLabel(mod, index + 1);
     const paidBadge = mod.paid ? '<span class="tag tag-paid">PAID</span>' : '';
+    const newBadge = mod.id === NEW_BADGE_ID ? '<span class="tag tag-new">NEW</span>' : '';
     return `
       <article class="mod-card">
         <div class="${shotClass}">${shot}<span class="rank">#${rank}</span></div>
         <div class="mod-info">
           <div class="mod-top">
             <h3>${escapeHtml(mod.name)}</h3>
-            <span class="tag-group"><span class="tag tag-${mod.tag}">${TAG_LABEL[mod.tag]}</span>${paidBadge}</span>
+            <span class="tag-group"><span class="tag tag-${mod.tag}">${TAG_LABEL[mod.tag]}</span>${paidBadge}${newBadge}</span>
           </div>
           <p>${escapeHtml(mod.desc)}</p>
-          <div class="mod-meta"><span>by ${escapeHtml(mod.author)}</span><span>${escapeHtml(mod.version)}</span></div>
+          <div class="mod-meta"><span>by ${escapeHtml(mod.author)}</span><span>${escapeHtml(mod.version)}</span>${ageMarkup(mod.updated)}</div>
         </div>
       </article>`;
   }).join('');
@@ -516,6 +644,8 @@ function setupTilt() {
 
 renderPodium();
 renderMods();
+refreshAges();
+setInterval(refreshAges, 1000);
 loadChangelog();
 setupDownload();
 setupCopyRole();
